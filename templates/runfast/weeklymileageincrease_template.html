@@ -1,0 +1,39 @@
+{% extends "runfast/analytics_template.html" %}
+
+{% block chart %}
+/* 	chart */
+
+var chart1; // globally available
+$(document).ready(function() {
+      chart1 = new Highcharts.Chart({
+         chart: {
+            renderTo: 'graph_content',
+            type: 'column'
+         },
+         title: {
+            text: 'Week over week mileage increase'
+         },
+         
+         credits:{
+         	enabled: false
+         },
+         
+         xAxis: {
+            categories: [{% for item in xaxis_list %}'{{item}}', {% endfor %}]
+         },
+         
+         yAxis: {
+            title: {
+               text: 'Percent increase'
+            }
+         },
+         series: [{
+            name: 'miles',
+            data: [{% for item in yaxis_list %}{{item}}, {% endfor %}],
+            
+         }]
+      });
+   });
+{% endblock %}	
+
+{{percent_increase_list}}

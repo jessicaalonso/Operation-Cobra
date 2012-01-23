@@ -1,0 +1,38 @@
+{% extends "runfast/analytics_template.html" %}
+
+{% block chart %}
+
+/* 	chart */
+
+var chart1; // globally available
+$(document).ready(function() {
+      chart1 = new Highcharts.Chart({
+         chart: {
+            renderTo: 'graph_content',
+            type: 'column'
+         },
+         title: {
+            text: 'Avg. speed by month'
+         },
+         
+         credits:{
+         	enabled: false
+         },
+         
+         xAxis: {
+            categories: [{% for item in xaxis_list %}'{{item}}', {% endfor %}]
+         },
+         
+         yAxis: {
+            title: {
+               text: 'Speed'
+            }
+         },
+         series: [{
+            name: 'Speed',
+            data: [{% for item in yaxis_list %}{{item}}, {% endfor %}],
+            
+         }]
+      });
+   });
+{% endblock %}	

@@ -1,0 +1,38 @@
+{% extends "runfast/analytics_template.html" %}
+
+{% block chart %}
+
+/* 	chart */
+
+var chart1; // globally available
+$(document).ready(function() {
+      chart1 = new Highcharts.Chart({
+         chart: {
+            renderTo: 'graph_content',
+            type: 'line'
+         },
+         title: {
+            text: 'Weekly Mileage'
+         },
+         
+         credits:{
+         	enabled: false
+         },
+         
+         xAxis: {
+            categories: [{% for item in xaxis_list %}'{{item}}', {% endfor %}]
+         },
+         
+         yAxis: {
+            title: {
+               text: 'Weekly Mileage'
+            }
+         },
+         series: [{
+            name: 'miles',
+            data: [{% for item in yaxis_list %}{{item}}, {% endfor %}],
+            
+         }]
+      });
+   });
+{% endblock %}	

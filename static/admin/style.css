@@ -1,0 +1,321 @@
+/* CSS reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+/* My CSS */
+
+
+
+/* 	calendar template */
+
+body {
+	background-color: #FFFFFF;
+	height: auto;
+	border-top: 5px solid #333;
+}
+
+#login {
+	width: 275px;
+	height: 27px;
+	background-color: #333;
+	margin-left: 70%;
+	text-align: center;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+header {
+	color: black;
+	position: absolute;
+	top: 5px;
+	font: 20px LeanderRegular, Helvetica 'Neue', Arial, 'Liberation Sans', FreeSans, sans-serif; 
+	width: 100%;
+	padding-top: 5px;
+	right: 100px;
+	text-align: right;
+}
+
+#mainnav a{
+	color: black;
+	text-decoration: none;
+/* 	position: absolute; */
+}
+ 
+#calendar { 
+	padding-left: 20px;
+	float: left;
+	width: 750px;
+	font: 1em Helvetica 'Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;	
+} 
+
+#date_nav {
+	display: inline;
+	float: right;
+}
+
+
+#calendar h1 { 
+	font: 3em LubalinBold, Helvetica 'Neue', Arial, 'Liberation Sans', FreeSans, sans-serif; 
+	color: #000; 
+}
+
+.calendar_table { 
+	border-collapse: collapse; 
+} 
+
+.calendar_table th, .calendar_table td { 
+	border: 1px solid #000; 
+} 
+
+.calendar_table th { 
+	font: 1em bold Helvetica 'Neue', Arial, 'Liberation Sans', FreeSans, sans-serif; 
+	border: none;
+}
+
+.calendar_table thead { 
+	background-color: #FFFFFF;
+	color: black;
+} 
+
+.calendar_table td { 
+	width: 6em; 
+	height: 5em; 
+	padding: .2em; 
+	vertical-align: top; 
+	overflow: auto; 
+}
+
+.calendar_table td:hover{
+	background-color: #E0E0E0;
+}
+
+#sidebar {
+	float: right;
+	height: 500px;
+	width: 265px;
+	margin-left: auto;
+	margin-right: 30px;
+	padding-top: 35px;
+}
+#goal {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#goal h1{
+	font: 16px LubalinBold, Helvetica 'Neue', Arial, 'Liberation Sans', FreeSans, sans-serif; 
+	background-color: #E0E0E0;
+	border-radius: 5px;
+}
+
+#goal p{
+	font: 14px LubalinRegular, Helvetica 'Neue', Arial, 'Liberation Sans', FreeSans, sans-serif; 
+}
+
+#add_race{
+	font: 12px LubalinRegular, Helvetica 'Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+	text-align: right;
+}
+
+#run_entry {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font: 14px LubalinRegular, Helvetica 'Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+}
+
+#run_entry h1{
+	font: 16px LubalinBold, Helvetica 'Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+	background-color: #E0E0E0;
+	border-radius: 5px;	
+}
+
+#duration{
+}
+
+.distance {
+	font: 3em Helvetica 'Neue', Arial, 'Liberation Sans', FreeSans, sans-serif; 
+	color: red; 
+	text-align: center;
+}
+
+.details{
+
+}
+
+footer {
+/*
+	height: 20px;
+	background-color: #333;
+*/
+}
+
+.current{
+}
+
+/* Analytics Styling */
+.main{
+	width: 950px;
+	border: 1px solid #000;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+h2{
+	font: 1.5em Helvetica 'Neue', Arial, 'Liberation Sans', FreeSans, sans-serif; 
+	border-top: 1px solid #E0E0E0;
+}
+
+.hide{
+	display: none !important;
+
+}
+
+/* Date range */
+.date_selector {
+	border-collapse: collapse; 
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.selector_box{
+	height: 15px;
+	width: 30px;
+	background-color: #E0E0E0;
+	border: 1px solid white;
+}
+
+.selector_box:hover{
+	background-color: red;
+}
+
+.selector_month {
+	border-collapse: collapse; 
+	font: 1em Helvetica 'Neue', Arial, 'Liberation Sans', FreeSans, sans-serif; 
+/* 	border: 1px solid #000;  */
+}
+
+.selector_year {
+	font: .75em Helvetica 'Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+	color: #999999; 	 
+}
+
+.select {
+	border: 1px solid #E0E0E0;
+}
+
+.box_select {
+	background-color: red;
+}
+
+
+
+/* Graph choice */
+
+.analytics_selector {
+	color: blue;
+	width: 130px;
+	font: .85em Helvetica 'Neue', Arial, 'Liberation Sans', FreeSans, sans-serif; 
+	position: relative;
+	height: 300px;
+}
+
+.analytics_selector li:hover{
+	background-color: #E0E0E0
+}
+
+
+ul li ul{
+	position: absolute;
+	top: 0;
+	left: 150px;
+	width: 300px;
+}
+
+#graph_content{
+/* 	border: 3px solid red; */
+	width: 550px;
+	height: 300px;
+	float: right;
+	margin-right: 30px;
+	background-color: #E0E0E0;
+}
+
+@font-face {
+    font-family: 'LeanderRegular';
+    src: url('/static/admin/leander/Leander-webfont.eot');
+    src: url('/static/admin/leander/Leander-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/admin/leander/Leander-webfont.woff') format('woff'),
+         url('/static/admin/leander/Leander-webfont.ttf') format('truetype'),
+         url('/static/admin/leander/Leander-webfont.svg#LeanderRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'LubalinBold';
+    src: url('/static/admin/lubalinbold/lubalinbold-webfont.eot');
+    src: url('/static/admin/lubalinbold/lubalinbold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/admin/lubalinbold/lubalinbold-webfont.woff') format('woff'),
+         url('/static/admin/lubalinbold/lubalinbold-webfont.ttf') format('truetype'),
+         url('/static/admin/lubalinbold/lubalinbold-webfont.svg#LubalinBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'LubalinRegular';
+    src: url('/static/admin/lubalinregular/lubalin_regular-webfont.eot');
+    src: url('/static/admin/lubalinregular/lubalin_regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/admin/lubalinregular/lubalin_regular-webfont.woff') format('woff'),
+         url('/static/admin/lubalinregular/lubalin_regular-webfont.ttf') format('truetype'),
+         url('/static/admin/lubalinregular/lubalin_regular-webfont.svg#LubalinRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

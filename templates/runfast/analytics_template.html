@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<HTML>
+<head>
+	<meta charset="UTF-8" />
+	<title >Dope Calendar</title > 
+	<link rel="stylesheet" type="text/css" href="/static/admin/style.css" />
+<!-- 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script> -->
+	<script src="/static/admin/jquery.js"></script>
+	<script src="/static/admin/js/highcharts.js"></script>
+	<script type="text/javascript">
+/* graph selector  */
+	$(function(){
+    	$('.analytics_selector li').click(function(){
+        	$(this).siblings('li').find('ul').not('.hide').addClass('hide');
+        	$(this).find('ul').toggleClass('hide');
+
+			$(this).css('background-color', '#E0E0E0');
+        	$(this).siblings('li').css('background-color', 'white');
+    	});
+	});
+
+/* date selector */
+	$(function(){
+		$('.date_selector td').click(function(){
+			$(this).toggleClass("select");
+			$('.selector_box').toggleClass("box_select");
+		});
+	});
+{% block chart %}	
+
+{% endblock %}	
+	</script>
+</head> 
+<body>
+
+<header>
+<nav id="mainnav"><a href="/runfast/calendar/">TRACKING</a> | <a href="/runfast/analytics">ANALYTICS</a></div>
+</header>
+
+<section class="main">
+
+<h2> Select date range to analyze</h2>
+
+	<table class="date_selector">
+		<tbody>
+				<tr>
+				{% for x in workout_strip_day %}
+					<td>
+						<div class="selector_box"></div>
+						<div class="selector_month">{{ x.0 }}</div>
+							{% if x.0 == 'Jan' %}
+								<div class="selector_year">{{ x.1 }}</div>
+							{% endif %}							
+					</td>
+				{% endfor %}
+				</tr>
+		</tbody>
+	</table>
+
+<div id="graph_content">
+{% block graph_content %}
+{% endblock %}
+</div>
+
+	
+<h2>Select a graph</h2>
+	
+	<ul class="analytics_selector">
+		<li>Performance
+			<ul class="hide" class="sublist">
+				<li><a href="/runfast/analytics/performance/pacebyweek/" class="alert-contents">Avg Pace by week</a></li>
+				<li><a href="/runfast/analytics/performance/pacebymonth/" class="alert-contents">Avg Pace by month</a></li>
+			</ul>
+		</li>
+		<li>Distance
+			<ul class="hide" class="sublist">
+				<li><a href="/runfast/analytics/distance/mileagebyweek/" class="alert-contents">Weekly</a></li>
+				<li><a href="/runfast/analytics/distance/mileagebymonth/" class="alert-contents">Monthly</a></li>
+				<li><a href="/runfast/analytics/distance/mileagebyyear/" class="alert-contents">Yearly</a></li>
+			</ul>		
+		</li>
+		<li>Injury Prevention
+			<ul class="hide" class="sublist">
+				<li><a href="/runfast/analytics/injuryprevention/weeklymileageincrease/" class="alert-contents">Weekly mileage increase</a></li>
+				<li><a href="/runfast/analytics/injuryprevention/monthlymileageincrease/" class="alert-contents">Monthly mileage increase</a></li>
+				<li><a href="/runfast/analytics/injuryprevention/longrunpercentofweek/" class="alert-contents">Long run % of weekly mileage</a></li>
+			</ul>
+		</li>	
+		<li>Race Preparation
+			<ul class="hide" class="sublist">
+				<li><a href="#" class="alert-contents">Race results prediction</a></li>
+				<li><a href="#" class="alert-contents">Training mileage targets </a></li>
+				<li><a href="#" class="alert-contents">Training speed targets</a></li>
+				<li><a href="#" class="alert-contents">Training comparison</a></li>
+			</ul>
+		</li>	
+		<li>Goals
+			<ul class="hide" class="sublist">
+				<li><a href="#" class="alert-contents">1</a></li>
+				<li><a href="#" class="alert-contents">2</a></li>
+				<li><a href="#" class="alert-contents">3</a></li>
+				<li><a href="#" class="alert-contents">4</a></li>
+			</ul>
+		</li>
+	</ul>
+</div>
+</section>
+</body>
+</html>

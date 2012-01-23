@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<HTML>
+<head>
+	<meta charset="UTF-8" />
+	<title >Dope Calendar</title > 
+	<link rel="stylesheet" type="text/css" href="/static/admin/style.css" />
+<!-- 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script> -->
+	<script src="/static/admin/jquery.js"></script>	
+	<script type="text/javascript">
+/* run detail link	 */
+
+	$(function(){
+
+		$('.calendar_table td').click(function(){
+			$('.current').css('background-color', '');
+			$('.current').removeClass('current');
+			$(this).css('background-color', '#E0E0E0');
+			$(this).addClass('current');
+		});
+		
+		$('.calendar_table td:not([value])').click(function(){
+			var text = $(this).attr("id");
+			$('input[name="date"]').val(text);
+			$('input[name="distance"]').focus()
+		});
+		
+/*
+		$('.calendar_table td[value]').click(function(){			
+			$('.calendar_table td .distance').removeClass('hide');
+			$(this).children('.hide').toggleClass('hide');
+			$(this).children('.distance').toggleClass('hide');
+		});
+*/		
+		
+	});
+
+	</script>
+
+</head>
+ 
+<body>
+
+<header>
+<nav id="mainnav"><a href="/runfast/calendar/">TRACKING</a> | <a href="/runfast/analytics">ANALYTICS</a></div>
+</header>
+
+<!--
+<div id="login">
+<form method="post" action="/runfast/calendar/">
+		
+		<input name="username" size="15" placeholder="username">
+		<input name="password" size="15" placeholder="password">
+		<button name="login_button" type="submit">Login</button>
+</form>
+</div>
+-->
+
+<div id="sidebar">
+	<section id="goal">
+		<h1>Next race:</h1>
+		<p>
+		{{ Racedb.0.racename }}<br>
+		{{ Racedb.0.raceday }}<br>
+		{{ Racedb.0.racedistance }} miles </p>
+		
+		<div id="add_race">add a race</div>
+	</section>
+
+ 
+	<section id="run_entry">
+		<h1>Enter a run:</h1>
+		
+		<form method="post" action="/runfast/calendar/">
+		
+		<p><label>Distance: <input name="distance" required placeholder="miles"></label></p>
+		
+		<p><label>Date: 	<input id="date" name="date" type='date' required placeholder="YYYY-MM-DD"></label></p>
+		
+		<p><label>Duration: </label><div id="duration"><input name="hours" type='text' maxlength="2" size="2" placeholder="hr"><input name="minutes" type='text' maxlength="2" size="2" placeholder="min"><input name="seconds" type='text' maxlength="2" size="2" placeholder="sec"></div></p>
+		
+		<input type="checkbox" name="road" value="True" />Road
+		<input type="checkbox" name="trail" value="True" />Trail	
+		<input type="checkbox" name="interval" value="True" />Interval
+		<input type="checkbox" name="treadmill" value="True" />Treadmill</p>		
+		
+		<p><input type="checkbox" name="longrun" value="True" />Long run
+		<input type="checkbox" name="hills" value="True" />Hills
+		<input type="checkbox" name="tempo" value="True" />Tempo run</p>		
+		<p><input type="checkbox" name="new_shoes" value="True" />New Shoes</p>
+		<input type="hidden" name="userid" value=1 />
+		<input type="hidden" name="view_date_on_submit" value="{{month_cal_mod.0.6.0|date:'b'}}. {{month_cal_mod.0.6.0|date:'d'}}, {{month_cal_mod.0.6.0|date:'Y'}}" />
+				
+		<p><button>Add this run</button></p>
+		</form>
+	</section>
+</div>
+ 
+<section id="calendar"> 
+	<h1>{{ month_cal_mod.0.6.0|date:"b"|upper }} {{ month_cal_mod.0.6.0|date:"Y" }}</h1 >
+	
+	<nav id="date_nav"> 
+		<form method="post" action="/runfast/calendar/">
+		<input type="hidden" name="earlier" value="{{month_cal_mod.0.6.0|date:'b'}}. {{month_cal_mod.0.6.0|date:'d'}}, {{month_cal_mod.0.6.0|date:'Y'}}">
+		<input type="image" src="/static/admin/arrow_up.png" alt="Previous" />
+		</form>
+
+		<form method="post" action="/runfast/calendar/">
+		<input type="hidden" name="next" value="{{month_cal_mod.0.6.0|date:'b'}}. {{month_cal_mod.0.6.0|date:'d'}}, {{month_cal_mod.0.6.0|date:'Y'}}">
+		<input type="image" src="/static/admin/arrow_down.png" alt="Next" />
+		</form>
+	</nav>
+
+	<table class="calendar_table"> 
+		<thead> 
+			<tr>  
+				<th>Monday</th> 
+				<th>Tuesday</th> 
+				<th>Wednesday</th> 
+				<th>Thursday</th> 
+				<th>Friday</th> 
+				<th>Saturday</th> 
+				<th>Sunday</th>
+			</tr> 
+		</thead> 
+		<tbody>
+			{% for week in month_cal_mod %}
+			<tr> 
+				{% for day in week %}
+				<td id="{{ day.0.year }}-{{ day.0.month }}-{{ day.0.day }}" {% if day.1 != '' %} value="{{ day.1.distance }}" {% endif %} >
+				{% if day.0 != 0 and day.0.month == month_cal_mod.1.6.0.month %} 
+				<div class="date">{{ day.0.day }}</div>
+				<div class="distance" id="{{ day.0 }}">{{day.1.distance}}</div>
+				<div class="hide">{% if day.1.distance > 0 %}
+					{{day.1.distance}}
+					{% if day.1.duration > 0 %} {{day.1.hours}}:{{day.1.minutes}}:{{day.1.seconds}} {% endif %}
+					{% if day.1.trail == 1 %} Trail {% endif %}
+					{% if day.1.interval == 1 %} Interval {% endif %}
+					{% if day.1.treadmill == 1 %} Treadmill {% endif %}
+					{% if day.1.longrun == 1 %} Long run {% endif %}
+					{% if day.1.hills == 1 %} Hills {% endif %}
+					{% if day.1.temporun == 1 %} Tempo {% endif %}	
+					{% if day.1.newshoes == 1 %} New shoes {% endif %}
+					{% endif %}
+				</div>
+						
+				{% endif %}
+				</td>
+				{% endfor %}
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</section>
+
+
+ 
+</body>
+</html>

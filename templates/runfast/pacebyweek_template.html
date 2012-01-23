@@ -1,0 +1,38 @@
+{% extends "runfast/analytics_template.html" %}
+
+{% block chart %}
+
+/* 	chart */
+
+var chart1; // globally available
+$(document).ready(function() {
+      chart1 = new Highcharts.Chart({
+         chart: {
+            renderTo: 'graph_content',
+            type: 'line'
+         },
+         title: {
+            text: 'Avg. Pace by week'
+         },
+         
+         credits:{
+         	enabled: false
+         },
+         
+         xAxis: {
+            categories: [{% for item in xaxis_list %}'{{item}}', {% endfor %}]
+         },
+         
+         yAxis: {
+            title: {
+               text: 'Pace'
+            }
+         },
+         series: [{
+            name: 'pace',
+            data: [{% for item in yaxis_list %}{{item}}, {% endfor %}],
+            
+         }]
+      });
+   });
+{% endblock %}	
